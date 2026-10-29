@@ -12,10 +12,17 @@ site/flat/posts.html              site/directory/posts/index.html
 site/flat/posts/hello.html        site/directory/posts/hello/index.html
 ```
 
-The site is deployed with GitHub Actions (`upload-pages-artifact` and `deploy-pages`), with no build step.
+The site is deployed with GitHub Actions (`upload-pages-artifact` and `deploy-pages`), with no build step, at https://honb.in/github-pages-trailing-slash/ (the account's Pages custom domain).
 
 ## Results
 
-Run `./check.sh` to print the status and redirect target of each URL.
+Checked on 2026-10-29 with `./check.sh`, which prints the status and redirect target of each URL. Redirects go to the same path with a trailing slash added.
 
-Results are added here after the first deploy.
+| Page | `flat/` | `flat/` with `/` | `directory/` | `directory/` with `/` |
+|---|---|---|---|---|
+| `about` | 200 | 404 | 301 | 200 |
+| `posts` | 200 | 404 | 301 | 200 |
+| `posts/hello` | 200 | 404 | 301 | 200 |
+
+- With the flat layout, every trailing-slash URL returns 404, including `/flat/posts/`, where `posts.html` sits next to a `posts/` directory that has no `index.html`.
+- With directory indexes, both forms work: the URL without a slash redirects to the one with it.

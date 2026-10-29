@@ -1,7 +1,7 @@
 #!/bin/sh
 # Print the status and redirect target of each sample URL.
 # Usage: ./check.sh [base URL]
-base=${1:-https://honbin.github.io/github-pages-trailing-slash}
+base=${1:-https://honb.in/github-pages-trailing-slash}
 
 for layout in flat directory; do
   for path in "" about posts posts/hello; do
